@@ -38,8 +38,17 @@ class Admin extends CI_Controller {
         {
             $data['username'] = $this->input->post('username');
             $data['password'] = md5($this->input->post('password'));
-            $query = $this->admin_model->add_admin($data);
-            return $this->load->view('admin/add_admin', array('info' => '添加成功!'));
+            $username = $_SESSION['username'];
+            $root = $this->admin_model->check_root($username)['root'];
+            if($root)
+            {
+                $query = $this->admin_model->add_admin($data);
+                return $this->load->view('admin/add_admin', array('info' => '添加成功!'));
+            }
+            else
+            {
+                return $this->load->view('admin/show_message');
+            }
         }
     }
 
