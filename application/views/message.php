@@ -1,6 +1,6 @@
 <?php// echo validation_errors(); ?>
 <h1>快留言!</h1>
-    <form action="<?php echo base_url();?>index.php/message/check_message" method="post" accept-charset="utf-8">
+    <form action="<?php echo base_url('index.php/message/check_message');?>" method="post" accept-charset="utf-8">
     <label for="child_name">孩子姓名</label>
         <input type="text" name="child_name"/><br>
     <label for="parent_name">家长姓名</label>

@@ -28,6 +28,6 @@ class Message extends CI_Controller {
 
 
         $this->message_model->check_message($data);
-        redirect ('message/index');
+        $this->load->view('check_message');
     }
 }

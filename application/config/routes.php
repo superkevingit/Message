@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$route['default_controller'] = 'message';
+$route['default_controller'] = 'message/index';
+$route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

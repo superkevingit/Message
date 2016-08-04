@@ -1,8 +1,8 @@
 <?php if ($root):;?>
-<li><a href="<?php echo base_url();?>index.php/admin/add_admin">添加管理员</a></li>
+<li><a href="<?php echo base_url('index.php/admin/add_admin');?>">添加管理员</a></li>
 <?php endif; ?>
 
-<li><a href="<?php echo base_url();?>index.php/admin/logout">登出</a></li>
+<li><a href="<?php echo base_url('index.php/admin/logout');?>">登出</a></li>
 
 <h1>后台留言</h1>
 <?php foreach ($message as $message_item): ?>

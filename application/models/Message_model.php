@@ -8,7 +8,6 @@ class Message_model extends CI_Model {
 
     public function check_message($data)
     {
-        print_r($data);
         $query = $this->db->insert('message', $data);
         return $query;
     }
