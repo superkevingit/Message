@@ -537,8 +537,8 @@ class CI_Profiler {
 	 */
 	public function run()
 	{
-		$output = '<div id="codeigniter_profiler" style="clear:both;background-color:#fff;padding:10px;">';
-		$fields_displayed = 0;
+		$output = '';
+		$fields_displayed = 1;
 
 		foreach ($this->_available_sections as $section)
 		{
@@ -556,7 +556,7 @@ class CI_Profiler {
 				.$this->CI->lang->line('profiler_no_profiles').'</p>';
 		}
 
-		return $output.'</div>';
+		return $output;
 	}
 
 }
