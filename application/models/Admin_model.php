@@ -12,6 +12,11 @@ class Admin_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function count_message()
+    {
+        return $this->db->from('message')->count_all_results();
+    }
+
     public function del_message($id)
     {
         $query = $this->db->where('id', $id)->delete('message');

@@ -7,15 +7,49 @@ class Admin extends CI_Controller {
         $this->load->model('admin_model');
         $this->load->database();
         $this->load->helper(array('url', 'form'));
-        $this->load->library('form_validation');
+        $this->load->library(array('form_validation'));
     }
 
     public function show_message()
     {
-        $message = $this->admin_model->get_message();
+        $this->load->library('pagination');
+
+        $config['per_page'] = 5;
+        $config['base_url'] = site_url('admin/show_message');
+        $total_rows = $this->admin_model->count_message();
+        $config['total_rows'] = $total_rows;
+        $config['use_page_numbers'] = TRUE;
+        //样式配置
+        $config['first_link'] = false;
+        $config['last_link'] = false;
+        $config['prev_link'] = '&lt;';
+        $config['next_link'] = '&gt;';
+        $config['full_tag_open'] = '<nav><ul class="pagination">';
+        $config['full_tag_close'] = '</ul></nav>';
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="active"><a href="#">';
+        $config['cur_tag_close'] = '</a><li>';
+        $config['prev_tag_open'] = '<li class="prev">';
+        $config['prev_tag_close'] = '</li>';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '<li>';
+
+        $this->pagination->initialize($config);
+
+        $page = (int)$this->uri->segment(3);
+        $offset = $page == false ? 0 : ($config['per_page']* ($page-1));
+
+        $this->db->limit($config['per_page'], $offset);
+        $data['list'] = $this->admin_model->get_message();
+
+        $data['page_list'] = $this->pagination->create_links();
+
+        //判断root
         $username = $_SESSION['username'];
         $root = $this->admin_model->check_root($username)['root'];
-        return $this->load->view('admin/show_message', array('message' => $message, 'root' => $root));
+
+        return $this->load->view('admin/show_message', array('data' => $data, 'root' => $root));
     }
 
     public function del_message($id)

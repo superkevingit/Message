@@ -370,13 +370,19 @@ class CI_Config {
 	/**
 	 * Set a config file item
 	 *
+     * @param   string  $index  Config  filename
 	 * @param	string	$item	Config item key
 	 * @param	string	$value	Config item value
 	 * @return	void
 	 */
-	public function set_item($item, $value)
+	public function set_item($index,$item, $value='')
 	{
-		$this->config[$item] = $value;
+        if($value == ''){
+		    $this->config[$index] = $item;
+        }
+        else{
+            $this->config[$index][$item] = $value;
+        }
 	}
 
 }

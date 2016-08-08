@@ -6,9 +6,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => 'EcjtuNetTest',
+	'hostname' => 'localhost',//change it
+	'username' => 'root',//change it
+	'password' => '123',//change it
 	'database' => 'hdm128467458_db',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
