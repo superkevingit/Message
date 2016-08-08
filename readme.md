@@ -1,3 +1,4 @@
+#请把readme.md和sql.txt删除
 # url
 留言页
 localhost/message/index.php
@@ -12,6 +13,8 @@ localhost/message/index.php/login/load_login
 数据库
 message/application/config/database.php
 修改hostname、username、password
+message/application/config/config.php
+修改base_url
 
 # 数据库文件
 hdm128467458_db.sql
