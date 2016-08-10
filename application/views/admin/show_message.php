@@ -51,34 +51,39 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
+                    <th>操作</th>
                     <th>孩子姓名</th>
                     <th>家长姓名</th>
                     <th>电话号码</th>
                     <th>孩子出生年月</th>
                     <th>体检要求</th>
                     <th>留言时间</th>
-                    <th>操作</th>
                 </tr>
                 </thead>
+                <form action="<?php echo base_url('index.php/admin/del_message');?>" method="post" >
                 <?php foreach ($data['list'] as $message_item): ?>
                 <tr>
+                    <th style="max-width: 300px;"><input type="checkbox" name="del[]" value="<?php echo $message_item['id'];?>" /></th>
                     <th style="max-width: 300px;"><?php echo $message_item['child_name'];?></th>
                     <th style="max-width: 300px;"><?php echo $message_item['parent_name'];?></th>
                     <th style="max-width: 300px;"><?php echo $message_item['tel'];?></th>
                     <th style="max-width: 300px;"><?php echo $message_item['child_birth'];?></th>
                     <th style="max-width: 300px;"><?php echo $message_item['requirement'];?></th>
                     <th style="max-width: 300px;"><?php echo $message_item['message_time'];?></th>
-                    <th style="max-width: 300px;"><a href="<?php echo base_url();?>index.php/admin/del_message/<?php echo $message_item['id'];?>">删除</a></th>
                 </tr>
                 <?php endforeach; ?>
             </table>
+                <input name="seg" type="hidden" value="<?php echo $seg;?>" />
+                <button type="submit" class="btn btn-default">确认删除</button>
+                </form>
+                <a href="<?php echo base_url('index.php/admin/get_excel');?>" class="btn btn-default">获取excel</a>
 
 		</div>
-		<div style="margin-left:auto;margin-right:auto"><?php echo $data['page_list'];?></div>
+		<div><?php echo $data['page_list'];?></div>
 
-        
+
     </div>
-    
+
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

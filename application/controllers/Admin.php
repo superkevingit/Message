@@ -14,7 +14,7 @@ class Admin extends CI_Controller {
     {
         $this->load->library('pagination');
 
-        $config['per_page'] = 5;
+        $config['per_page'] = 10;
         $config['base_url'] = site_url('admin/show_message');
         $total_rows = $this->admin_model->count_message();
         $config['total_rows'] = $total_rows;
@@ -37,7 +37,7 @@ class Admin extends CI_Controller {
 
         $this->pagination->initialize($config);
 
-        $page = (int)$this->uri->segment(3);
+        $page = (int)$this->uri->segment(3, 1);
         $offset = $page == false ? 0 : ($config['per_page']* ($page-1));
 
         $this->db->limit($config['per_page'], $offset);
@@ -49,13 +49,26 @@ class Admin extends CI_Controller {
         $username = $_SESSION['username'];
         $root = $this->admin_model->check_root($username)['root'];
 
-        return $this->load->view('admin/show_message', array('data' => $data, 'root' => $root));
+        return $this->load->view('admin/show_message', array('data' => $data, 'root' => $root, 'seg' => $page));
     }
 
-    public function del_message($id)
+    public function del_message()
     {
-        $query = $this->admin_model->del_message($id);
-        redirect('admin/show_message');
+        $ids = $this->input->post('del');
+        var_dump($ids);
+        $query = $this->admin_model->del_message($ids);
+
+        $seg = $this->input->post('seg');
+
+        # 防空页
+        $total_rows = $this->admin_model->count_message();
+        $perPage = 10;
+        $page  = (int)$total_rows / $perPage;
+        if ($seg > $page){
+            $seg = round($page);
+        }
+
+        redirect("admin/show_message/$seg");
     }
 
     public function add_admin()
@@ -84,6 +97,31 @@ class Admin extends CI_Controller {
                 return $this->load->view('admin/show_message');
             }
         }
+    }
+
+    public function get_excel()
+    {
+        ob_clean();
+        $this->load->library('excel');
+        $this->excel->setActiveSheetIndex(0);
+        $this->excel->getActiveSheet()->setTitle('优哒用户留言');
+        $message = $this->admin_model->get_message();
+        $add = array_unshift($message, array(
+                'id'           =>'编号',
+                'child_name'   =>'孩子姓名',
+                'parent_name'  =>'家长姓名',
+                'tel'          =>'电话号码',
+                'child_birth'  =>'孩子出生年月',
+                'requirement'  =>'体检要求',
+                'message_time' =>'留言时间'
+            ));
+        $this->excel->getActiveSheet()->fromArray($message);
+        $filename="youda_message.xls";
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="'.$filename.'"');
+        header('Cache-Control: max-age=0');
+        $objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel5');
+        $objWriter->save('php://output');
     }
 
     public function logout()
