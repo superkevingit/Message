@@ -61,10 +61,14 @@
                     <th>留言时间</th>
                 </tr>
                 </thead>
+                <?php if($root):;?>
                 <form action="<?php echo base_url('index.php/admin/del_message');?>" method="post" >
+                <?php endif;?>
                 <?php foreach ($data['list'] as $message_item): ?>
                 <tr>
+                    <?php if($root):;?>
                     <th style="max-width: 300px;"><input type="checkbox" name="del[]" value="<?php echo $message_item['id'];?>" /></th>
+                    <?php endif;?>
                     <th style="max-width: 300px;"><?php echo $message_item['child_name'];?></th>
                     <th style="max-width: 300px;"><?php $sex=$message_item['sex'] == "1" ? "男" : "女" ; echo $sex ?></th>
                     <th style="max-width: 300px;"><?php echo $message_item['parent_name'];?></th>
@@ -75,9 +79,13 @@
                 </tr>
                 <?php endforeach; ?>
             </table>
+                <?php if($root):;?>
                 <input name="seg" type="hidden" value="<?php echo $seg;?>" />
+                <input name="root" type="hidden" value="<?php echo $root;?>">
+
                 <button type="submit" class="btn btn-default">确认删除</button>
                 </form>
+                <?php endif;?>
                 <a href="<?php echo base_url('index.php/admin/get_excel');?>" class="btn btn-default">获取excel</a>
 
 		</div>

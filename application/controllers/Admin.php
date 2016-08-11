@@ -55,8 +55,8 @@ class Admin extends CI_Controller {
     public function del_message()
     {
         $ids = $this->input->post('del');
-        var_dump($ids);
-        $query = $this->admin_model->del_message($ids);
+        $root = $this->input->post('root');
+        $query = $this->admin_model->del_message($ids, $root);
 
         $seg = $this->input->post('seg');
 

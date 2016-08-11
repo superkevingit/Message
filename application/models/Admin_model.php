@@ -17,15 +17,19 @@ class Admin_model extends CI_Model {
         return $this->db->from('message')->count_all_results();
     }
 
-    public function del_message($ids)
+    public function del_message($ids, $root)
     {
-        $this->db->trans_start();
-        foreach( $ids as $id):
-        $query = $this->db->where('id', $id)->delete('message');
-        endforeach;
-        $this->db->trans_complete();
-
-        return $query;
+        if ($root){
+            $this->db->trans_start();
+            foreach( $ids as $id):
+            $query = $this->db->where('id', $id)->delete('message');
+            endforeach;
+            $this->db->trans_complete();
+            return $query;
+        }
+        else{
+            return False;
+        }
     }
 
     public function add_admin($data)
