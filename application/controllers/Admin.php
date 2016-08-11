@@ -109,6 +109,7 @@ class Admin extends CI_Controller {
         $add = array_unshift($message, array(
                 'id'           =>'编号',
                 'child_name'   =>'孩子姓名',
+                'sex'          =>'孩子性别',
                 'parent_name'  =>'家长姓名',
                 'tel'          =>'电话号码',
                 'child_birth'  =>'孩子出生年月',

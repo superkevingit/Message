@@ -53,6 +53,7 @@
                 <tr>
                     <th>操作</th>
                     <th>孩子姓名</th>
+                    <th>孩子性别</th>
                     <th>家长姓名</th>
                     <th>电话号码</th>
                     <th>孩子出生年月</th>
@@ -65,6 +66,7 @@
                 <tr>
                     <th style="max-width: 300px;"><input type="checkbox" name="del[]" value="<?php echo $message_item['id'];?>" /></th>
                     <th style="max-width: 300px;"><?php echo $message_item['child_name'];?></th>
+                    <th style="max-width: 300px;"><?php $sex=$message_item['sex'] == "1" ? "男" : "女" ; echo $sex ?></th>
                     <th style="max-width: 300px;"><?php echo $message_item['parent_name'];?></th>
                     <th style="max-width: 300px;"><?php echo $message_item['tel'];?></th>
                     <th style="max-width: 300px;"><?php echo $message_item['child_birth'];?></th>

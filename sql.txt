@@ -24,4 +24,6 @@ CREATE TABLE `admin` (
 			    ADD PRIMARY KEY (`id`);
 			    ALTER TABLE `message`
 			      MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+                  ALTER TABLE `message` ADD `sex` BOOLEAN NOT NULL AFTER `child_name`;
+                  ALTER TABLE `message` CHANGE `sex` `sex` TINYINT(1) NULL;
 

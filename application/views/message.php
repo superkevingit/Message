@@ -58,6 +58,10 @@ unset($errors[count($errors) - 1]);
                 <input class="form-control" type="text" name="child_name"/><br>
             <label for="parent_name">家长姓名</label>
                 <input class="form-control" type="text" name="parent_name"/><br>
+            <label for="sex">孩子性别</label>&nbsp;
+                <input type="radio" name="sex" value="1" />男孩
+                <input type="radio" name="sex" value="0" />女孩
+                </br>
             <label for="tel">家长电话</label>
                 <input class="form-control" type="text" name="tel"/><br/>
 

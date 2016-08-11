@@ -18,6 +18,11 @@ class Message extends CI_Controller {
         $this->form_validation->set_rules('child_name', 'child_name', 'required|xss_clean',
                                             array('required' => '请填写孩子姓名！')
                                         );
+        $this->form_validation->set_rules('sex', 'sex', 'required|numeric|xss_clean',
+                                            array('required' => '请选择孩子性别！',
+                                                  'numeric' => '请输入数字'
+                                                )
+                                        );
         $this->form_validation->set_rules('parent_name', 'parent_name', 'required|xss_clean',
                                             array('required' => '请填写家长姓名！')
                                         );
@@ -58,6 +63,7 @@ class Message extends CI_Controller {
 
         $data = array(
             'child_name' => $this->input->post('child_name'),
+            'sex' => $this->input->post('sex'),
             'parent_name' => $this->input->post('parent_name'),
             'tel' => $this->input->post('tel'),
             'child_birth' => $fmtDate,
