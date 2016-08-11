@@ -51,7 +51,9 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
+                    <?php if($root):;?>
                     <th>操作</th>
+                    <?php endif;?>
                     <th>孩子姓名</th>
                     <th>孩子性别</th>
                     <th>家长姓名</th>

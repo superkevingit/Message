@@ -8,7 +8,7 @@ class Admin_model extends CI_Model {
 
     public function get_message()
     {
-        $query = $this->db->get('message');
+        $query = $this->db->order_by('id', 'DESC')->get_where('message');
         return $query->result_array();
     }
 

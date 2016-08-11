@@ -68,7 +68,7 @@ class Message extends CI_Controller {
             'tel' => $this->input->post('tel'),
             'child_birth' => $fmtDate,
             'requirement' => $this->input->post('requirement'),
-            'message_time' => date('y-m-d h:i:s',time())
+            'message_time' => date('y-m-d H:i:s',time())
         );
 
         $this->message_model->check_message($data);
